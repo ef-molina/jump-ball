@@ -14,7 +14,7 @@ THREE.ColorManagement.legacyMode = false;
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 const floorMaterial = new THREE.MeshStandardMaterial({ color: 'white' });
 const floorMaterialTwo = new THREE.MeshStandardMaterial({
-  color: 'mediumpurple',
+  color: 'lightgrey',
 });
 const obstacleMaterial = new THREE.MeshStandardMaterial({ color: 'orangered' });
 const wallMaterial = new THREE.MeshStandardMaterial({ color: 'slategrey' });
@@ -22,24 +22,13 @@ const wallMaterial = new THREE.MeshStandardMaterial({ color: 'slategrey' });
 // ============================== FLOOR =================================
 export const Block = ({ position = [0, 0, 0], material = floorMaterial }) => (
   <group position={position}>
-    <mesh
-      receiveShadow
-      geometry={boxGeometry}
-      material={material}
-      position={[0, -0.1, 0]}
-      scale={[4, 0.2, 4]}
-    />
+    <mesh receiveShadow geometry={boxGeometry} material={material} position={[0, -0.1, 0]} scale={[4, 0.2, 4]} />
   </group>
 );
 export const StartBlock = ({ position = [0, 0, 0] }) => (
   <group position={position}>
     <Float>
-      <Text
-        position={[1, 1, 0]}
-        fontSize={0.3}
-        maxWidth={0.25}
-        rotation-y={[-0.25]}
-      >
+      <Text position={[1, 1, 0]} fontSize={0.3} maxWidth={0.25} rotation-y={[-0.25]}>
         MARBLE RACE
       </Text>
     </Float>
@@ -48,19 +37,10 @@ export const StartBlock = ({ position = [0, 0, 0] }) => (
 );
 
 // ======================= FINISH LINE ==================================
-export const FinishLine = ({
-  position = [0, 0, 0],
-  material = floorMaterial,
-}) => {
+export const FinishLine = ({ position = [0, 0, 0], material = floorMaterial }) => {
   return (
     <group position={position}>
-      <mesh
-        receiveShadow
-        geometry={boxGeometry}
-        material={material}
-        position={[0, 0, 0]}
-        scale={[4, 0.4, 4]}
-      />
+      <mesh receiveShadow geometry={boxGeometry} material={material} position={[0, 0, 0]} scale={[4, 0.4, 4]} />
     </group>
   );
 };
@@ -84,21 +64,8 @@ export const Spinner = ({ position = [0, 0, 0] }) => {
   return (
     <group position={position}>
       <Block position={[0, 0, 0]} material={floorMaterialTwo} />
-      <RigidBody
-        ref={obstacleRef}
-        type='kinematicPosition'
-        position={[0, 0.3, 0]}
-        restitution={0.2}
-        friction={0}
-      >
-        <mesh
-          receiveShadow
-          castShadow
-          geometry={boxGeometry}
-          material={obstacleMaterial}
-          position={[0, -0.1, 0]}
-          scale={[0.3, 0.3, 3.5]}
-        />
+      <RigidBody ref={obstacleRef} type='kinematicPosition' position={[0, 0.3, 0]} restitution={0.2} friction={0}>
+        <mesh receiveShadow castShadow geometry={boxGeometry} material={obstacleMaterial} position={[0, -0.1, 0]} scale={[0.3, 0.3, 3.5]} />
       </RigidBody>
     </group>
   );
@@ -123,21 +90,8 @@ export const Limbo = ({ position = [0, 0, 0] }) => {
   return (
     <group position={position}>
       <Block position={[0, 0, 0]} material={floorMaterialTwo} />
-      <RigidBody
-        ref={obstacleRef}
-        type='kinematicPosition'
-        position={[0, 0.3, 0]}
-        restitution={0.2}
-        friction={0}
-      >
-        <mesh
-          receiveShadow
-          castShadow
-          geometry={boxGeometry}
-          material={obstacleMaterial}
-          position={[0, -0.1, 0]}
-          scale={[3.5, 0.3, 0.3]}
-        />
+      <RigidBody ref={obstacleRef} type='kinematicPosition' position={[0, 0.3, 0]} restitution={0.2} friction={0}>
+        <mesh receiveShadow castShadow geometry={boxGeometry} material={obstacleMaterial} position={[0, -0.1, 0]} scale={[3.5, 0.3, 0.3]} />
       </RigidBody>
     </group>
   );
@@ -162,21 +116,8 @@ export const Slider = ({ position = [0, 0, 0] }) => {
   return (
     <group position={position}>
       <Block position={[0, 0, 0]} material={floorMaterialTwo} />
-      <RigidBody
-        ref={obstacleRef}
-        type='kinematicPosition'
-        position={[0, 0, 0]}
-        restitution={0.2}
-        friction={0}
-      >
-        <mesh
-          receiveShadow
-          castShadow
-          geometry={boxGeometry}
-          material={obstacleMaterial}
-          position={[0, -0.1, 0]}
-          scale={[1.5, 2, 0.3]}
-        />
+      <RigidBody ref={obstacleRef} type='kinematicPosition' position={[0, 0, 0]} restitution={0.2} friction={0}>
+        <mesh receiveShadow castShadow geometry={boxGeometry} material={obstacleMaterial} position={[0, -0.1, 0]} scale={[1.5, 2, 0.3]} />
       </RigidBody>
     </group>
   );
@@ -185,45 +126,15 @@ export const Slider = ({ position = [0, 0, 0] }) => {
 const Bounds = ({ length = 1 }) => {
   return (
     <RigidBody type='fixed' restitution={0.2} friction={0}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={boxGeometry}
-        material={wallMaterial}
-        position={[-2, 1, -(length * 2) + 2]}
-        scale={[0.1, 2, 4 * length]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={boxGeometry}
-        material={wallMaterial}
-        position={[2, 1, -(length * 2) + 2]}
-        scale={[0.1, 2, 4 * length]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={boxGeometry}
-        material={wallMaterial}
-        position={[0, 1, -(length * 4) + 2]}
-        scale={[4, 2, 0.2]}
-      />
-      <CuboidCollider
-        args={[2, 0.1, length * 2]}
-        position={[0, -0.1, -(length * 2) + 2]}
-        restitution={0.2}
-        friction={1}
-      />
+      <mesh castShadow receiveShadow geometry={boxGeometry} material={wallMaterial} position={[-2, 1, -(length * 2) + 2]} scale={[0.1, 2, 4 * length]} />
+      <mesh castShadow receiveShadow geometry={boxGeometry} material={wallMaterial} position={[2, 1, -(length * 2) + 2]} scale={[0.1, 2, 4 * length]} />
+      <mesh castShadow receiveShadow geometry={boxGeometry} material={wallMaterial} position={[0, 1, -(length * 4) + 2]} scale={[4, 2, 0.2]} />
+      <CuboidCollider args={[2, 0.1, length * 2]} position={[0, -0.1, -(length * 2) + 2]} restitution={0.2} friction={1} />
     </RigidBody>
   );
 };
 
-export const Level = ({
-  count = 10,
-  types = [Spinner, Slider, Limbo],
-  seed = 0,
-}) => {
+export const Level = ({ count = 10, types = [Spinner, Slider, Limbo], seed = 0 }) => {
   const components = useMemo(() => {
     const components = [];
 

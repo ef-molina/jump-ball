@@ -9,13 +9,13 @@ const style = {
   position: 'fixed',
   top: '0',
   left: '0',
-  border: '1px solid red',
+  // border: '1px solid red',
   pointerEvents: 'none',
 };
 
 const time = {
   position: 'absolute',
-  top: '10%',
+  top: '8%',
   width: '100%',
   display: 'flex',
   justifyContent: 'center',
@@ -50,9 +50,7 @@ const controls = {
 };
 
 const Interface = () => {
-  const { forward, backward, left, right, jump } = useKeyboardControls(
-    (state) => state
-  );
+  const { forward, backward, left, right, jump } = useKeyboardControls((state) => state);
   const reset = useGame((state) => state.restart);
   const timer = useRef();
 
@@ -63,8 +61,7 @@ const Interface = () => {
       let elapsedTime = 0;
 
       if (state.phase === 'playing') elapsedTime = Date.now() - state.startTime;
-      else if (state.phase === 'ended')
-        elapsedTime = state.endTime - state.startTime;
+      else if (state.phase === 'ended') elapsedTime = state.endTime - state.startTime;
 
       elapsedTime /= 1000;
       elapsedTime = elapsedTime.toFixed(2);
@@ -106,8 +103,7 @@ const Interface = () => {
               justifyContent: 'center',
               alignItems: 'center',
             }}
-            className={`key ${jump ? 'active' : ''}`}
-          >
+            className={`key ${jump ? 'active' : ''}`}>
             space
           </div>
         </div>

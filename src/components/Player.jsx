@@ -134,18 +134,10 @@ const Player = () => {
   });
 
   return (
-    <RigidBody
-      ref={body}
-      colliders='ball'
-      position={[0, 1, 0]}
-      restitution={0.2}
-      friction={1}
-      linearDamping={0.5}
-      angularDamping={0.5}
-    >
+    <RigidBody ref={body} colliders='ball' position={[0, 1, 0]} restitution={0.2} friction={1} linearDamping={0.5} angularDamping={0.5}>
       <mesh castShadow>
         <icosahedronGeometry args={[0.3, 1]} />
-        <meshStandardMaterial flatShading color='lightblue' />
+        <meshStandardMaterial flatShading color='grey' />
       </mesh>
     </RigidBody>
   );
